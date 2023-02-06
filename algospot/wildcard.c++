@@ -15,11 +15,7 @@ bool match(string wildcard, string str, int w, int s) {
         ret = 1;
     }
     else if(wildcard[w] == '*') {
-        bool isMatch = false;
-        for(int i = s; i <= sSize; i++) {
-            isMatch = isMatch || match(wildcard, str, w + 1, i);
-        }
-        ret = isMatch;
+        ret = match(wildcard, str, w + 1, s) || match(wildcard, str, w, s + 1);
     }
     else if(w == wSize && s != sSize || w != wSize && s == sSize) {
         ret = 0;
